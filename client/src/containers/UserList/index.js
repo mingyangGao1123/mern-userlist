@@ -14,10 +14,14 @@ import { deleteUser } from '../../actions/deleteuser';
 import FetchError from '../ErrorMessage';
 
 class UserList extends Component {
-  state = {
-    searchText: '',
-    searchedColumn: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchText: '',
+      searchedColumn: '',
+    };
+    props.dispatch(getUsers());
+  }
 
   getColumnSearchProps = dataIndex => ({
     filterDropdown: ({
@@ -96,11 +100,6 @@ class UserList extends Component {
     this.setState({ searchText: '' });
   };
 
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(getUsers());
-  }
-
   handleDelete(_id) {
     const { dispatch } = this.props;
     dispatch(deleteUser(_id));
@@ -117,6 +116,9 @@ class UserList extends Component {
 
   render() {
     const { users } = this.props;
+    if (users.isLoading) {
+      return <div>Loading</div>;
+    }
 
     console.log(users);
 
