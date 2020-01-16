@@ -23,6 +23,11 @@ class UserList extends Component {
     props.dispatch(getUsers());
   }
 
+  //  componentDidMount() {
+  //    const { dispatch } = this.props;
+  //    dispatch(getUsers());
+  //  }
+
   getColumnSearchProps = dataIndex => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -117,7 +122,7 @@ class UserList extends Component {
   render() {
     const { users } = this.props;
     if (users.isLoading) {
-      return <div>Loading</div>;
+      return <div> </div>;
     }
 
     console.log(users);
@@ -176,11 +181,6 @@ class UserList extends Component {
     }
 
     let usersUI;
-    //if (users.isLoading) {
-    //  usersUI = <p>Loading</p>;
-    //} else if (users.error !== '') {
-    //  usersUI = <p style={{ color: 'red' }}>{users.error}</p>;
-    //} else if (users.data.length !== 0) {
     usersUI = (
       <Table
         columns={columns}
