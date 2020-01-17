@@ -121,9 +121,9 @@ class UserList extends Component {
 
   render() {
     const { users } = this.props;
-    if (users.isLoading) {
-      return <div> </div>;
-    }
+    // if (users.isLoading) {
+    //   return <div> </div>;
+    // }
 
     console.log(users);
 
